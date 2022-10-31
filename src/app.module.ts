@@ -19,10 +19,10 @@ import config from './config';
       isGlobal: true,
       validationSchema: Joi.object({
         API_KEY: Joi.string().required(),
-        JWT_SECRET: Joi.string().required(),
+        //JWT_SECRET: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
         DATABASE_PORT: Joi.number().required(),
-        DATABASE_URL: Joi.string().required(),
+        //DATABASE_URL: Joi.string().required(),
       }),
     }),
     HttpModule,
@@ -47,3 +47,11 @@ import config from './config';
   ],
 })
 export class AppModule {}
+
+//$env:NODE_ENV = 'nombre'; npm run start:dev para setear variables de entorno en windows
+
+//$env:NODE_ENV = 'dev'; npm run start:dev para iniciar ambiente de desarrollo en windows
+//$env:NODE_ENV = 'stag'; npm run start:dev para iniciar ambiente de staging en windows
+//$env:NODE_ENV = 'prod'; npm run start:dev para iniciar ambiente de produccion en windows
+
+//NODE_ENV=prod npm run start:dev para setear variables de entorno en linux
