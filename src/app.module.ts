@@ -19,10 +19,10 @@ import config from './config';
       isGlobal: true,
       validationSchema: Joi.object({
         API_KEY: Joi.string().required(),
-        //JWT_SECRET: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
         DATABASE_NAME: Joi.string().required(),
         DATABASE_PORT: Joi.number().required(),
-        //DATABASE_URL: Joi.string().required(),
+        DATABASE_URL: Joi.string().required(),
       }),
     }),
     HttpModule,
@@ -55,3 +55,13 @@ export class AppModule {}
 //$env:NODE_ENV = 'prod'; npm run start:dev para iniciar ambiente de produccion en windows
 
 //NODE_ENV=prod npm run start:dev para setear variables de entorno en linux
+
+// heroku create
+
+// heroku addons
+
+// heroku addons:docs heroku-postgresql
+
+// heroku addons:create heroku-postgresql:hobby-dev
+
+// heroku pg:info

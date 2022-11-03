@@ -8,37 +8,21 @@ import config from '../config';
 const API_KEY = '12345634';
 const API_KEY_PROD = 'PROD1212121SA';
 
-// client.query('SELECT * FROM tasks', (err, res) => {
-//   console.error(err);
-//   console.log(res.rows);
-// });
-
 @Global()
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       inject: [config.KEY],
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { user, host, dbName, password, port } = configService.postgres;
         return {
           type: 'postgres',
-          host,
-          port,
-          username: user,
-          password,
-          database: dbName,
+          url: configService.postgresUrl,
           synchronize: false,
           autoLoadEntities: true,
+          // ssl: {
+          //   rejectUnauthorized: false,
+          // },
         };
-        // return {
-        //   type: 'postgres',
-        //   url: configService.postgresUrl,
-        //   synchronize: false,
-        //   autoLoadEntities: true,
-        //   ssl: {
-        //     rejectUnauthorized: false,
-        //   },
-        // };
       },
     }),
   ],
@@ -50,24 +34,14 @@ const API_KEY_PROD = 'PROD1212121SA';
     {
       provide: 'PG',
       useFactory: (configService: ConfigType<typeof config>) => {
-        const { user, host, dbName, password, port } = configService.postgres;
         const client = new Client({
-          user,
-          host,
-          database: dbName,
-          password,
-          port,
+          connectionString: configService.postgresUrl,
+          // ssl: {
+          //   rejectUnauthorized: false,
+          // },
         });
         client.connect();
         return client;
-        // const client = new Client({
-        //   connectionString: configService.postgresUrl,
-        //   ssl: {
-        //     rejectUnauthorized: false,
-        //   },
-        // });
-        // client.connect();
-        // return client;
       },
       inject: [config.KEY],
     },
