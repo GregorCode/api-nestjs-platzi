@@ -65,3 +65,12 @@ export class AppModule {}
 // heroku addons:create heroku-postgresql:hobby-dev
 
 // heroku pg:info
+
+//git remote -v
+//git checkout master
+//git push heroku master
+
+//heroku log --tail
+
+//heroku run npm run migrations:prod
+//

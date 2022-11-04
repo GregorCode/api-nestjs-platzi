@@ -54,10 +54,10 @@ export class ProductsController {
     return this.productsService.findOne(productId);
   }
 
-  @Roles(Role.ADMIN)
   @Post()
-  create(@Body() payload: CreateProductDto) {
-    return this.productsService.create(payload);
+  @Roles(Role.ADMIN)
+  create(@Body() createProductDto: CreateProductDto) {
+    return this.productsService.create(createProductDto);
   }
 
   @Put(':id')
